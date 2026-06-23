@@ -14,7 +14,6 @@ import { Pen, Trash } from "lucide-react"
 const StudentPage = () => {
 
     const students = use(fetch("http://localhost:3001/students").then(item => item.json()))
-    console.log(students)
 
 
     return (
@@ -35,9 +34,9 @@ const StudentPage = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {students.data.map((item: any) => (
-                            <TableRow>
-                                <TableCell className="font-medium flex items-center py-4">
+                        {students.data.map((item: any, index: number) => (
+                            <TableRow key={index} >
+                                <TableCell className="font-medium">
                                     <div>Img</div>
                                     <div>{item.name}</div>
                                 </TableCell>
@@ -46,7 +45,7 @@ const StudentPage = () => {
                                 <TableCell className="font-medium">{item.class}</TableCell>
                                 <TableCell className="font-medium">{item.avgGrade}</TableCell>
                                 <TableCell className="font-medium">{item.email}</TableCell>
-                                <TableCell className="font-medium flex gap-4 h-full">
+                                <TableCell className="font-medium flex gap-4 ">
                                     <Pen size="16" />
                                     <Trash size="16" />
                                 </TableCell>
